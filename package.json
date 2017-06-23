@@ -1,0 +1,24 @@
+{
+  "name": "new-york-times-bestseller",
+  "version": "1.0.0",
+  "description": "A browsable UI for New York Times bestsellers",
+  "main": "index.js",
+  "scripts": {
+    "test": "spec/Spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiai8901/NewYorkTimesBestSeller.git"
+  },
+  "keywords": [
+    "UI",
+    "API",
+    "RESTful"
+  ],
+  "author": "Ai Shi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shiai8901/NewYorkTimesBestSeller/issues"
+  },
+  "homepage": "https://github.com/shiai8901/NewYorkTimesBestSeller#readme"
+}
