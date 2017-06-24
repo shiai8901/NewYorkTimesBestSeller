@@ -1,9 +1,9 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry: ['./public/index.js'],
+  entry: ['./client/index.js'],
   output: {
-    path: __dirname + '/public/',
+    path: __dirname + '/client/',
     filename: 'bundle.js'
   },
   module: {
@@ -18,7 +18,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: /public/,
+        include: /client/,
         loaders: ["style-loader", "css-loader"]
       }
     ]

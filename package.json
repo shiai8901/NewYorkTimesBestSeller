@@ -2,10 +2,10 @@
   "name": "new-york-times-bestseller",
   "version": "1.0.0",
   "description": "A browsable UI for New York Times bestsellers",
-  "main": "index.js",
+  "main": "/client/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -d --watch",
+    "build": "webpack -d --watch"
   },
   "repository": {
     "type": "git",
