@@ -4,7 +4,7 @@
   "description": "A browsable UI for New York Times bestsellers",
   "main": "index.js",
   "scripts": {
-    "test": "spec/Spec.js"
+    "test": "spec/Spec.js",
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,5 @@
   "bugs": {
     "url": "https://github.com/shiai8901/NewYorkTimesBestSeller/issues"
   },
-  "homepage": "https://github.com/shiai8901/NewYorkTimesBestSeller#readme"
+  "homepage": "https://github.com/shiai8901/NewYorkTimesBestSeller#readme",
 }
