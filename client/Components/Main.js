@@ -59,7 +59,12 @@ export default class Main extends React.Component {
 		console.log(this.state);
 		return (<div className="main">
 			<PageHeader />
-			<PageNav />
+			<PageNav 
+				getViewBookList={this.getViewBookList}
+				viewBookLists={this.state.viewBookLists}
+				next_published_date={this.state.next_published_date}
+				previous_published_date={this.state.previous_published_date}
+				published_date={this.state.published_date} />
 			<PageContent 
 				viewBookLists={this.state.viewBookLists}
 				next_published_date={this.state.next_published_date}

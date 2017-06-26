@@ -42,12 +42,14 @@ export default class BookMenuItem extends React.Component {
 			}
 		return (<div className="book_menu_item">
 			<p className="rank">{this.state.rank}</p>
-			<article>
+			<article className="book">
 				<img className="book_image thumbnail" src={this.state.book_image} ></img>
-				<p className="fressness">{this.state.weeks_on_list}</p>
+				<div className="book_body">
+				<p className="fressness">{this.state.weeks_on_list} weeks on the list</p>
 				<p className="title">{this.state.title}</p>
-				<p className="author">{this.state.author}</p>
+				<p className="author">by {this.state.author}</p>
 				<p className="description">{this.state.description}</p>
+				</div>
 			</article>
 			</div>)
 	}
