@@ -3,6 +3,8 @@
 body {
 	margin: 0;
 	min-height: 100vh;
+    -ms-text-size-adjust: 100%;
+    font-size: 100%;
 }
 .main {
 	margin: 0;
@@ -27,7 +29,7 @@ body {
 .page_heading {
 	font-weight: 700;
     font-style: normal;
-    /*font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;*/
+    font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;
     margin-top: 5px;
     font-size: 1.5rem;
     line-height: 1.75rem;
@@ -37,7 +39,7 @@ body {
     font-size: 1.0625rem;
     line-height: 1.4375rem;
     font-weight: 400;
-    /*font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;*/
+    font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #666;
@@ -58,38 +60,62 @@ body {
 	font-size: 1.125rem;
     line-height: 1.25rem;
     font-weight: 700;
+    font-family: "nyt-franklin",arial,helvetica,sans-serif;
 }
 .book_menu {
     padding: 0;
     margin: 20px 0;
 }
+
 .book_menu_item {
 	list-style-type: none;
 	position: relative;
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	display: flex;
+	font-stretch: condensed;
+	letter-spacing: -0.025rem;
+}
+.book {
+	width: 100%;
+	display: inline-block;
 }
 .book_menu_item .rank {
-	position: absolute;
-    top: 0;
-    margin-right: 0;
+	font-family: "cheltenham-cond-normal-500",georgia,"times new roman",times,serif;
+    margin-top: 2px;
 	font-size: 1.875rem;
 	font-weight: 500;
-    /*flex: 1 0 32px;*/
 	display: inline-block;
 	margin-right: 7px;
 	line-height: 30px;
-    color: #999;
+	color: #999;
 }
-.book_menu_item article {
-	display: inline-block;
-	width: 100%;
+.title {
+	font-size: 1.0625rem;
+    line-height: 1.1875rem;
+    font-weight: 700;
+    font-family: "nyt-franklin",arial,helvetica,sans-serif;
+    display: block;
+    margin: 0;
+}
+.author {
+	font-size: 0.9375rem;
+    line-height: 1.1875rem;
+    font-weight: 500;
+    display: inline;
+	font-family: "nyt-franklin",arial,helvetica,sans-serif;
+    margin: 0;
 }
 .book_menu_item .thumbnail {
 	display: none;
 }
 .book_menu_item .description {
 	display: none;
+	font-size: 0.875rem;
+    line-height: 1.1875rem;
+    font-weight: 400;
+    font-family: georgia,"times new roman",times,serif;
+    color: #333;
+    margin-bottom: 0;
 }
 .book_menu_item .fressness {
 	display: none;
@@ -124,8 +150,40 @@ body {
 		flex: 1;
 		padding-left: 15px;
     }
+    .book_menu_item:first-child {
+    	padding-left: 0;
+    }
+    .book_body {
+    	margin-top: 15px;
+    }
+    .book_menu_item .rank {
+		position: absolute;
+	    top: 0;
+	    transform:scale(0.7,1); 
+  		-webkit-transform:scale(0.7,1);
+	}
+	.title {
+		font-size: 1rem;
+		line-height: 1.125rem;
+		font-weight: 700;
+	}
+	.author {
+		font-size: 0.875rem;
+	    line-height: 1.0625rem;
+	    font-weight: 400;
+	}
+    .book_menu_item:last-child {
+		border-right: none;
+	}
     .book_menu_item .fressness {
 		display: block;
+		font-size: 0.5rem;
+		line-height: 0.75rem;
+		font-weight: 400;
+		color: #333;
+		text-transform: uppercase;
+		margin-bottom: 0;
+		letter-spacing: 0.025em;
 	}
 	.book_menu_item .thumbnail {
 		display: block;
