@@ -7,7 +7,7 @@ body {
 .main {
 	margin: 0;
 	padding: 0 10px;
-	background-color: #bababa;
+	margin-top: 13px;
 }
 .branding-header {
 	text-align: center;
@@ -20,25 +20,91 @@ body {
 }
 .page_header {
 	border-top: 1px solid #e2e2e2;
-/*    position: relative;
-*/    margin-bottom: 15px;
+    margin-bottom: 15px;
     padding-top: 32px;
+    font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;
 }
 .page_heading {
 	font-weight: 700;
     font-style: normal;
-    font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;
+    /*font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;*/
     margin-top: 5px;
     font-size: 1.5rem;
     line-height: 1.75rem;
     text-transform: capitalize;
-
 }
-
+.page_subheading {
+    font-size: 1.0625rem;
+    line-height: 1.4375rem;
+    font-weight: 400;
+    /*font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #666;
+    display: block;
+}
+.page_nav {
+	border-top: 1px solid #ccc;
+    padding-top: 0;
+    border-bottom: 2px solid #000;
+}
+.page_content_section {
+	border-bottom: 1px solid #e2e2e2;
+	padding-bottom: 0;
+	margin-top: 20px;
+	width: 100%;
+}
+.page_content_section_listName {
+	font-size: 1.125rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+}
+.book_menu {
+    padding: 0;
+    margin: 20px 0;
+}
+.book_menu_item {
+	list-style-type: none;
+	position: relative;
+	margin-bottom: 20px;
+	display: flex;
+}
+.book_menu_item .rank {
+	position: absolute;
+    top: 0;
+    margin-right: 0;
+	font-size: 1.875rem;
+	font-weight: 500;
+    /*flex: 1 0 32px;*/
+	display: inline-block;
+	margin-right: 7px;
+	line-height: 30px;
+    color: #999;
+}
+.book_menu_item article {
+	display: inline-block;
+	width: 100%;
+}
+.book_menu_item .thumbnail {
+	display: none;
+}
+.book_menu_item .description {
+	display: none;
+}
+.book_menu_item .fressness {
+	display: none;
+}
+.footer {
+	border-top: solid 1px #bababa;
+	color: #999;
+	background-color: #fff;
+	padding-top: 11px;
+}
 @media only screen and (min-width: 764px) {
     .main {
     	margin: 0 auto;
     	width: 705px;
+    	margin-top: 13px;
     }
     .page_heading {
 	    font-size: 2.25rem;
@@ -46,6 +112,30 @@ body {
 	    font-weight: 400;
 	    font-style: normal;
 	    margin-top: 5px;
+	}
+	.book_menu {
+		margin-bottom: 30px;
+    	display: flex;
+    }
+    .book_menu_item {
+		border-right: 1px solid #e2e2e2;
+		padding-right: 15px;
+		flex-direction: column;
+		flex: 1;
+		padding-left: 15px;
+    }
+    .book_menu_item .fressness {
+		display: block;
+	}
+	.book_menu_item .thumbnail {
+		display: block;
+		margin-right: auto;
+	    margin-left: auto;
+	    height: 110px;
+	    max-width: 82px;
+	}
+	.footer{
+		padding-top: 13px;
 	}
 }
 
@@ -57,22 +147,35 @@ body {
 	.main {
     	width: 960px;
     	margin: auto;
+		margin-top: 13px;
     }
     .page_heading {
 	    font-size: 3rem;
 	    line-height: 3rem;
     }
+    .book_menu_item .thumbnail {
+    	display: block;
+    	height: 170px;
+		max-width: 132px;
+    }
+    .book_menu_item .description {
+		display: block;
+	}
+    .footer {
+    	padding-top: 9px;
+    }
 }
 
-@media only screen and (min-width: 1200px) {
+/*@media only screen and (min-width: 1200px) {
 	
-}
+}*/
 
 @media only screen and (min-width: 1280px) {
 
 	.main {
 		width: 1125px;
     	margin: auto;
+    	margin-top: 13px;
     }
 	
 }
