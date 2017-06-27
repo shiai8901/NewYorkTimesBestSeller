@@ -11,13 +11,14 @@ body {
 	padding: 0 10px;
 	margin-top: 13px;
 }
+
+/* arrows */
 i {
     border: solid black;
     border-width: 0 1px 1px 0;
     display: inline-block;
     padding: 2px;
 }
-
 .right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
@@ -37,6 +38,8 @@ i {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
 }
+
+/* App header */
 .branding-header {
 	text-align: center;
 	padding: 10px;
@@ -46,6 +49,8 @@ i {
 	height: 26px;
 	width: 185px;
 }
+
+/* Page header */
 .page_header {
 	border-top: 1px solid #e2e2e2;
     margin-bottom: 15px;
@@ -55,7 +60,7 @@ i {
 .page_heading {
 	font-weight: 700;
     font-style: normal;
-    font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;
+    /*font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;*/
     margin-top: 5px;
     font-size: 1.5rem;
     line-height: 1.75rem;
@@ -65,28 +70,31 @@ i {
     font-size: 1.0625rem;
     line-height: 1.4375rem;
     font-weight: 400;
-    font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;
+    /*font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #666;
-    display: block;
+    /*display: block;*/
+    display: none;
 }
+
+/** Page navigation **/
 .page_nav {
 	border-top: 1px solid #ccc;
     padding-top: 0;
-    border-bottom: 2px solid #000;
     display: table;
     width: 100%;
+    vertical-align: middle;
 }
 .dropdowns {
-	float: left;
-	display: table-cell;
+	text-align: left;
+	display: block;
 }
 .dropdown {
 	display: inline-block;
 	position: relative;
 	margin: 4px;
-	padding: 0 7px;
+	padding: 5px 7px;
 	border-left: solid 1px #ccc;
 }
 .dropdown:first-child {
@@ -96,8 +104,6 @@ i {
 }
 .dropdown > label {
 	text-transform: uppercase;
-	font-size: 0.75rem;
-    line-height: 0.9375rem;
     font-weight: 500;
     font-family: "nyt-franklin",arial,helvetica,sans-serif;
     margin-right: 10px;
@@ -119,32 +125,51 @@ i {
 	cursor:pointer;
 }
 .select_dy_date {
-	display: table-cell;
-	vertical-align: middle;
-	text-align: right;
+	display: block;
+	/*vertical-align: middle;*/
+	text-align: center;
+	border-top: 2px solid #000;
+	padding: 3px;
+	font-size: 100%;
+	border-bottom: 1px solid #ccc;
 }
 .select_dy_date > div {
 	display: inline-block;
-    font-size: 0.6875rem;
-    line-height: 0.6875rem;
     font-family: "nyt-franklin",arial,helvetica,sans-serif;
-    padding: 0 15px;
+    padding: 5px 15px;
+}
+.select_dy_date > div:first-child {
+	float: left;
+}
+.select_dy_date > div:last-child {
+	float: right;
 }
 .hover {
 	background-color: #ccc;
 }
 
+/** Page Content **/
 .page_content_section {
 	border-bottom: 1px solid #e2e2e2;
 	padding-bottom: 0;
 	margin-top: 20px;
 	width: 100%;
 }
-.page_content_section_listName {
+.page_content_section_listName >.heading{
 	font-size: 1.125rem;
     line-height: 1.25rem;
     font-weight: 700;
     font-family: "nyt-franklin",arial,helvetica,sans-serif;
+    cursor: pointer;
+}
+.page_content_section_listName>.heading:hover {
+	text-decoration: underline;
+}
+.page_content_section_listName>.arrow {
+	padding:0 8px;
+}
+.page_content_section_listName > * {
+	display: inline-block;
 }
 .book_menu {
     padding: 0;
@@ -154,7 +179,6 @@ i {
 .book_menu_item {
 	list-style-type: none;
 	position: relative;
-	/*margin-bottom: 20px;*/
 	display: flex;
 	font-stretch: condensed;
 	letter-spacing: -0.025rem;
@@ -204,12 +228,16 @@ i {
 .book_menu_item .fressness {
 	display: none;
 }
+
+/** Footer **/
 .footer {
 	border-top: solid 1px #bababa;
 	color: #999;
 	background-color: #fff;
 	padding-top: 11px;
 }
+
+
 @media only screen and (min-width: 764px) {
     .main {
     	margin: 0 auto;
@@ -222,6 +250,40 @@ i {
 	    font-weight: 400;
 	    font-style: normal;
 	    margin-top: 5px;
+	}
+	.page_subheading {
+		display: block;
+	}
+	.page_nav {
+		border-top: 1px solid #ccc;
+	    padding-top: 0;
+	    border-bottom: 2px solid #000;
+	    display: table;
+	    width: 100%;
+	}
+	.dropdowns {
+		display: table-cell;
+	}
+	.dropdown {
+		padding: 0 7px;
+	}
+	.dropdown > label {
+		font-size: 0.75rem;
+	    line-height: 0.9375rem;
+	}
+	.select_dy_date {
+		display: table-cell;
+		vertical-align: middle;
+		text-align: right;
+	    border-top: none;
+	}
+	.select_dy_date > div {
+	    font-size: 0.6875rem;
+	    line-height: 0.6875rem;
+	    padding: 0 15px;
+	}
+	.select_dy_date > div:first-child, .select_dy_date > div:last-child {
+		float: none;
 	}
 	.book_menu {
 		margin-bottom: 30px;
