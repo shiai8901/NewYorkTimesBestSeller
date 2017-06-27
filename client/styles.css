@@ -296,6 +296,9 @@ i {
 		flex: 1;
 		padding-left: 15px;
     }
+    .detai_view {
+    	display: block;
+    }
     .book_menu_item:first-child {
     	padding-left: 0;
     }
