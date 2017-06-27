@@ -20,21 +20,31 @@ export default class PageContentSection extends React.Component {
 
 	componentWillMount() {
 		
-			this.setState({
-				books: this.props.list.books,
-				display_name: this.props.list.display_name,
-				list_id: this.props.list.list_id,
-				list_image: this.props.list.list_image,
-				list_image_height: this.props.list.list_image_height,
-				list_image_width: this.props.list.list_image_width,
-				list_name: this.props.list.list_name,
-				list_name_encoded: this.props.list.list_name_encoded,
-				updated: this.props.list.updated				
-			});
+			// this.setState({
+			// 	books: this.props.list.books,
+			// 	display_name: this.props.list.display_name,
+			// 	list_id: this.props.list.list_id,
+			// 	list_image: this.props.list.list_image,
+			// 	list_image_height: this.props.list.list_image_height,
+			// 	list_image_width: this.props.list.list_image_width,
+			// 	list_name: this.props.list.list_name,
+			// 	list_name_encoded: this.props.list.list_name_encoded,
+			// 	updated: this.props.list.updated				
+			// });
 		
 	}
 
-	render() {
+	render() {		
+
+	if (this.props.page_heading && this.props.page_heading !== "The New York Times Best Sellers") {
+
+		return (<div className="page_content_section">
+			<BookMenu className="book_menu detail_view" 
+				books={this.props.list}
+				page_heading={this.props.page_heading} />
+			</div>)
+
+	} else {
 
 		return (<div className="page_content_section">
 			<div className="page_content_section_listName" onClick={this.props.getBookListName}>
@@ -44,5 +54,6 @@ export default class PageContentSection extends React.Component {
 			<BookMenu className="book_menu" 
 				books={this.props.list.books} />
 			</div>)
+	}
 	}
 }
