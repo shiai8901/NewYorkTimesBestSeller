@@ -25,7 +25,6 @@ export default class Main extends React.Component {
 	}	
 
 	getViewBookList(listName, bestSellerWeek, api_key) {
-		const context = this;
 		const options = {
 			hostname: "api.nytimes.com",
 			path: '/svc/books/v3/lists/overview.json?api-key=6b63ef908c9045a9ac3def3734d36e69',
@@ -33,7 +32,7 @@ export default class Main extends React.Component {
 		};
 
 		const req = https.request(options, (res) => {
-			var data = "";
+			let data = "";
 			res.on('data', (d) => {
 				data += d;
 			});
@@ -48,7 +47,7 @@ export default class Main extends React.Component {
 					});
 				});
 
-				context.setState({
+				this.setState({
 					categories: lists,
 					viewBookLists: data.results.lists,
 					next_published_date: data.results.next_published_date,
@@ -71,15 +70,12 @@ export default class Main extends React.Component {
 
 	getBookListName(e) {
 		let listName;
-		// console.log(e.target);
 		if (e.target.value) {
-			// console.log(e.target.value);
 			listName = e.target.value;
 		} else if (e.target.title) {
-			// console.log(e.target.title);
 			listName = e.target.title;
 		}
-		const context = this;
+
 		const options = {
 			hostname: "api.nytimes.com",
 			path: '/svc/books/v3/lists.json?api-key=6b63ef908c9045a9ac3def3734d36e69&list='+listName,
@@ -87,14 +83,13 @@ export default class Main extends React.Component {
 		};
 
 		const req = https.request(options, (res) => {
-			var data = "";
+			let data = "";
 			res.on('data', (d) => {
 				data += d;
 			});
 			res.on('end', () => {
 				data = JSON.parse(data);
-				console.log(data);
-				context.setState({
+				this.setState({
 					page_heading: data.results[0].list_name,
 					viewBookLists: data.results
 				})

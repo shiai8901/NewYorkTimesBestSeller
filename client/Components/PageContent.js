@@ -2,10 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PageContentSection from './PageContentSection';
 
-export default class PageContent extends React.Component {
-	constructor(props) {
-		super(props);
-	}	
+export default class PageContent extends React.Component {	
 
 	render() {
 		let sections = "Loading";
@@ -13,17 +10,16 @@ export default class PageContent extends React.Component {
 		if (this.props.page_heading && this.props.page_heading !== "The New York Times Best Sellers") {
 			sections = <PageContentSection 
 								page_heading={this.props.page_heading}
-								// getBookListName={this.props.getBookListName}
 								list={this.props.viewBookLists}  />
 		} else {
 			if (this.props.viewBookLists.length > 0 ) {
-				sections = this.props.viewBookLists.map((list) => {
-					return <PageContentSection 
+				sections = this.props.viewBookLists.map((list) => (
+					<PageContentSection 
 								page_heading={this.props.page_heading}
 								getBookListName={this.props.getBookListName}
 								list={list} 
 								key={list.list_id} />
-				});			
+				));			
 			} 
 
 		}

@@ -3,42 +3,16 @@ import ReactDOM from 'react-dom';
 import Dropdown from './Dropdown';
 
 export default class PageNav extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state ={
-			viewBookLists: [],
-			previous_published_date: "",
-			published_date: "",
-			next_published_date: ""
-		}
-	}	
 
 	render() {
 				
 		let fictions = [], nonfictions = [], children = [], monthly = [];
-		console.log(this.props.viewBookLists);
-
-		if (this.props.viewBookLists) {
-			
-			fictions = this.props.viewBookLists.filter((list) => {
-				return list.list_name.includes('Fiction');
-			});
-			nonfictions = this.props.viewBookLists.filter((list) => {
-				return list.list_name.includes('Nonfiction') || list.list_name.includes("Advice How-To and Miscellaneous");
-			});
-			monthly = this.props.viewBookLists.filter((list) => {
-				return list.list_name.includes("Business") || list.list_name.includes("Science") || list.list_name.includes("Sports");
-			});
-			children = this.props.viewBookLists.filter((list) => {
-				return !fictions.includes(list) && !nonfictions.includes(list) && !monthly.includes(list);
-			});
-
+		if (this.props.viewBookLists) {			
+			fictions = this.props.viewBookLists.filter((list) => (list.list_name.includes('Fiction')));
+			nonfictions = this.props.viewBookLists.filter((list) => (list.list_name.includes('Nonfiction') || list.list_name.includes("Advice How-To and Miscellaneous")));
+			monthly = this.props.viewBookLists.filter((list) => (list.list_name.includes("Business") || list.list_name.includes("Science") || list.list_name.includes("Sports")));
+			children = this.props.viewBookLists.filter((list) => (!fictions.includes(list) && !nonfictions.includes(list) && !monthly.includes(list)));
 		}
-
-		console.log("fictions: ", fictions);
-		console.log("nonfictions: ", nonfictions);
-		console.log("monthly: ", monthly);
-		console.log("children: ", children);
 
 		return (<div className="page_nav">
 			<form className="dropdowns" >
