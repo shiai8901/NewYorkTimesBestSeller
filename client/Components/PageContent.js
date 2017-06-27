@@ -8,12 +8,11 @@ export default class PageContent extends React.Component {
 	}	
 
 	render() {
-		// console.log("page_content: ", this.props);
 		let sections = "Loading";
 		if (this.props.viewBookLists.length > 0 ) {
-			// console.log("oha", this.props);
 			sections = this.props.viewBookLists.map((list) => {
 				return <PageContentSection 
+							getBookListName={this.props.getBookListName}
 							list={list} 
 							key={list.list_id} />
 			});			
