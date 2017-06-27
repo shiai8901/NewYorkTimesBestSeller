@@ -35,10 +35,12 @@ export default class PageContentSection extends React.Component {
 	}
 
 	render() {
-		// console.log("PageContentSection: ", this.props);
 
 		return (<div className="page_content_section">
-			<h3 className="page_content_section_listName">{this.props.list.list_name}</h3>
+			<div className="page_content_section_listName" onClick={this.props.getBookListName}>
+				<div className="heading" title={this.props.list.list_name_encoded}>{this.props.list.list_name}</div>
+				<div className="arrow"><i className="right"></i></div>
+			</div>
 			<BookMenu className="book_menu" 
 				books={this.props.list.books} />
 			</div>)
