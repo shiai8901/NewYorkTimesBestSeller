@@ -9,19 +9,21 @@ export default class Dropdown extends React.Component {
 
 	render() {
 
-		console.log('dropdown: ', this.props);
 		let content = [];
+
 		if (this.props.options) {
 			content = this.props.options.map((option) => {
-				return <a href="#" key={option.list_id}>{option.display_name}</a>
+				return <option key={option.list_id} value={option.display_name}>{option.display_name}</option>
 			});
 		}
 
-		return (<div className="dropdown">				
-				<button className="dropbtn">{this.props.name}</button>
-				<div className="dropdown-content">
-					{content}
-				</div>
+		return (<div className="dropdown">
+			<label htmlFor={this.props.name}>{this.props.name}</label><div className="arrow"><i className="down"></i></div>
+				<select>
+				<option id={this.props.name} name={this.props.name}>{this.props.name}</option>
+				<option disabled>--</option>
+				{content}
+				</select>
 			</div>)
 	}
 }
