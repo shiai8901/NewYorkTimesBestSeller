@@ -11,3 +11,12 @@ A NY Times API key...
 ```
 http://developer.nytimes.com/signup (make sure to select the Books API from the API menu)
 ```
+
+##Start
+```
+webpack -d --watch
+```
+and then open client/index.html in browser
+
+##Bugs
+User can browse the home page, however, when user click a list_name, the book list detail view cannot render properly, since the data fetched through NY Times API does not contain book image.
