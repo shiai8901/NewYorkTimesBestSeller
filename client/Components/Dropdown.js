@@ -15,7 +15,7 @@ export default class Dropdown extends React.Component {
 			content = this.props.options.map((option) => {
 				return <option 
 							key={option.list_id} 
-							value={option.list_name_encoded} >{option.display_name}</option>
+							value={option.list_name_encoded} >{option.list_name}</option>
 			});
 		}
 
