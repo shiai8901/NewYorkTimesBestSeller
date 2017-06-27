@@ -37,11 +37,11 @@ export default class PageNav extends React.Component {
 
 
 		return (<div className="page_nav">
-			<form className="dropdowns" onClick={this.showDropdownContent}>
-				<Dropdown name="fiction" options={fictions} />
-				<Dropdown name="nonfiction" options={nonfictions} />
-				<Dropdown name="children's" options={children} />
-				<Dropdown name="monthly list" options={monthly} />
+			<form className="dropdowns" >
+				<Dropdown getBookListName={this.props.getBookListName} name="fiction" options={fictions} />
+				<Dropdown getBookListName={this.props.getBookListName} name="nonfiction" options={nonfictions} />
+				<Dropdown getBookListName={this.props.getBookListName} name="children's" options={children} />
+				<Dropdown getBookListName={this.props.getBookListName} name="monthly list" options={monthly} />
 			</form>
 			<div className="select_dy_date">
 				<div className="select_dy_date_prev arrow">
