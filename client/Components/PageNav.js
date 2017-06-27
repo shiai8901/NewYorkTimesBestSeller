@@ -16,6 +16,7 @@ export default class PageNav extends React.Component {
 	render() {
 				
 		let fictions = [], nonfictions = [], children = [], monthly = [];
+		console.log(this.props.viewBookLists);
 
 		if (this.props.viewBookLists) {
 			
@@ -34,7 +35,10 @@ export default class PageNav extends React.Component {
 
 		}
 
-
+		console.log("fictions: ", fictions);
+		console.log("nonfictions: ", nonfictions);
+		console.log("monthly: ", monthly);
+		console.log("children: ", children);
 
 		return (<div className="page_nav">
 			<form className="dropdowns" >
