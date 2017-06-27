@@ -13,17 +13,7 @@ export default class PageNav extends React.Component {
 		}
 	}	
 
-	componentWillMount() {
-		// this.setState({
-		// 	viewBookLists: this.props.viewBookLists,
-		// 	previous_published_date: this.state.previous_published_date,
-		// 	published_date: this.state.published_date,
-		// 	next_published_date: this.props.next_published_date
-		// })
-	}
-
 	render() {
-				// getViewBookList={this.getViewBookList}
 				
 		let fictions = [], nonfictions = [], children = [], monthly = [];
 
@@ -44,17 +34,23 @@ export default class PageNav extends React.Component {
 
 		}
 
+
+
 		return (<div className="page_nav">
-			<div className="dropdowns">
+			<form className="dropdowns" onClick={this.showDropdownContent}>
 				<Dropdown name="fiction" options={fictions} />
 				<Dropdown name="nonfiction" options={nonfictions} />
 				<Dropdown name="children's" options={children} />
 				<Dropdown name="monthly list" options={monthly} />
-			</div>
+			</form>
 			<div className="select_dy_date">
-			<div className="select_dy_date_prev">{this.props.previous_published_date}</div>
-			<div>{this.props.published_date}</div>
-			<div className="select_dy_date_next">{this.props.next_published_date}</div>
+				<div className="select_dy_date_prev arrow">
+					<i className="left"></i>	
+				</div>
+				<div>{this.props.published_date}</div>
+				<div className="select_dy_date_next arrow">
+					<i className="right"></i>
+				</div>
 			</div>
 			</div>)
 	}
