@@ -21,13 +21,13 @@ export default class PageNav extends React.Component {
 				<Dropdown getBookListName={this.props.getBookListName} name="children's" options={children} />
 				<Dropdown getBookListName={this.props.getBookListName} name="monthly list" options={monthly} />
 			</form>
-			<div className="select_dy_date">
-				<div className="select_dy_date_prev arrow">
-					<i className="left"></i>	
+			<div className="select_dy_date" onClick={this.props.getBestsellerWeek}>
+				<div className="select_dy_date_prev arrow" title={this.props.previous_published_date}>
+					<i className="left" ></i>	
 				</div>
 				<div>{this.props.published_date}</div>
-				<div className="select_dy_date_next arrow">
-					<i className="right"></i>
+				<div className="select_dy_date_next arrow" title={this.props.next_published_date}>
+					<i className="right" ></i>
 				</div>
 			</div>
 			</div>)
