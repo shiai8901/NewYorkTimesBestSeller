@@ -3,30 +3,17 @@ import ReactDOM from 'react-dom';
 import BookMenuItem from './BookMenuItem';
 
 export default class BookMenu extends React.Component {
-	constructor(props) {
-		super(props);
-	}	
-
-	componentDidMount() {
-
-	}
 
 	render() {
 		let sections = "Loading";
-		console.log(this.props);
-
-
 
 		if (this.props.page_heading && this.props.page_heading !== "The New York Times Best Sellers" ) {
-			console.log(this.props);
 
 			if (this.props.books !== []) {
-				sections = this.props.books.map((book) => {
-					return <BookMenuItem 
+				sections = this.props.books.map((book) =>  (<BookMenuItem 
 								page_heading={this.props.page_heading}
 								book={book.book_details[0]}
-								key={book.rank} />
-				})
+								key={book.rank} />));
 			}
 
 			return (<div>
@@ -35,15 +22,13 @@ export default class BookMenu extends React.Component {
 			</ol>
 			</div>)
 
-		} else {
+		} 
 
 		if (this.props.books !== []) {
-			sections = this.props.books.map((book) => {
-				return <BookMenuItem 
+			sections = this.props.books.map((book) => (<BookMenuItem 
 							page_heading={this.props.page_heading}
 							book={book}
-							key={book.rank} />
-			})
+							key={book.rank} />));
 		}
 
 		return (<div>
@@ -51,7 +36,7 @@ export default class BookMenu extends React.Component {
 			{sections}
 			</ol>
 			</div>)
-		}
+		
 
 	}
 }

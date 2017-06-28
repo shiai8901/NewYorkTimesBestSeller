@@ -3,20 +3,15 @@ import ReactDOM from 'react-dom';
 
 
 export default class Dropdown extends React.Component {
-	constructor(props) {
-		super(props);
-	}	
-
 	render() {
 
 		let content = [];
 		let context = this;
+
 		if (this.props.options) {
-			content = this.props.options.map((option) => {
-				return <option 
+			content = this.props.options.map((option) => (<option 
 							key={option.list_id} 
-							value={option.list_name_encoded} >{option.list_name}</option>
-			});
+							value={option.list_name_encoded} >{option.list_name}</option>));
 		}
 
 		return (<div className="dropdown">
