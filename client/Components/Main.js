@@ -5,12 +5,12 @@ import PageNav from './PageNav';
 import PageContent from './PageContent';
 import PageIndex from './PageIndex';
 import https from 'https';
-
-const api_key = "6b63ef908c9045a9ac3def3734d36e69";
+import http from 'http';
 
 const options_config = {
-	hostname: "api.nytimes.com",
-	path: '/svc/books/v3/lists/',
+	hostname: "localhost",
+	port: 8080,
+	path: '/api/',
 	method: 'GET'
 }
 
@@ -27,11 +27,30 @@ export default class Main extends React.Component {
 			page_heading: "The New York Times Best Sellers",
 			page_subheading: "Authoritatively ranked lists of books sold in the United States, sorted by format and genre."
 		}
+		this.getDataFromServer = this.getDataFromServer.bind(this);
 		this.getViewBookList = this.getViewBookList.bind(this);
 		this.getBookListName = this.getBookListName.bind(this);
 		this.getDataFromAPI = this.getDataFromAPI.bind(this);
 		this.getBestsellerWeek = this.getBestsellerWeek.bind(this);
 	}	
+
+
+	getDataFromServer(options, callback) {
+		const req = http.request(options, (res) => {
+			let data = "";
+			res.on('data', (d) => {
+				data += d;
+			});
+			res.on('end', () => {
+				data = JSON.parse(data);
+				callback(data);
+			});
+		});
+		req.on('error', (e) => {
+			console.error(e);
+		});
+		req.end();
+	}
 
 	getDataFromAPI(options, api_key, callback) {
 		const req = https.request(options, (res) => {
@@ -50,16 +69,12 @@ export default class Main extends React.Component {
 		req.end();
 	}
 
-	getViewBookList(bestSellerWeek, api_key) {
-
+	getViewBookList(bestSellerWeek) {
 		let options = Object.assign({}, options_config);
-		let params = 'overview.json?api-key=' + api_key;
 
 		if (bestSellerWeek) {
-			params += '&published_date=' + bestSellerWeek;
+			options.path += "date/" + bestSellerWeek;
 		}
-
-		options.path = options.path + params;
 
 		const cb = function(data) {
 				let lists = [];
@@ -79,18 +94,17 @@ export default class Main extends React.Component {
 					published_date_description: data.results.published_date_description
 				});
 		}.bind(this);
-
-		this.getDataFromAPI(options, api_key, cb); 
+		this.getDataFromServer(options, cb);
 	}
 
 	componentWillMount() {
-		this.getViewBookList("", api_key); 
+		this.getViewBookList(); 
 	}
 
 	getBestsellerWeek(e) {
 		let week = e.target.title;
 		if (week) {
-			this.getViewBookList(week, api_key);
+			this.getViewBookList(week);
 		}
 	}
 
@@ -103,8 +117,7 @@ export default class Main extends React.Component {
 		}
 
 		let options = Object.assign({}, options_config);
-		let params = '.json?api-key=' + api_key + '&list=' + listName;
-		options.path = options.path + params;
+		options.path += "list/" + listName;
 
 		const cb = function(data) {
 			this.setState({
@@ -112,8 +125,7 @@ export default class Main extends React.Component {
 					viewBookLists: data.results
 				});
 		}.bind(this);
-
-		this.getDataFromAPI(options, api_key, cb);
+		this.getDataFromServer(options, cb);
 	}
 
 	render() {
