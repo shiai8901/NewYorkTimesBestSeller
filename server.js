@@ -65,7 +65,15 @@ router.get('/date/:date', (req, res) => {
 });
 
 router.get('/list/:list_name', (req, res) => {
-	console.log('server get /list_name');
+	let options = Object.assign({}, options_config);
+	let list_name = req.params.list_name;
+	let params = '.json?api-key=' + api_key + '&list=' + list_name;
+	options.path += params;
+
+	Promise.resolve(getDataFromAPI(options))
+		.then((data) => {
+			res.send(data);
+		})
 });
 
 app.use('/api', router);

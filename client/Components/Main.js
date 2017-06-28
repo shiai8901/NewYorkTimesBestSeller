@@ -7,16 +7,11 @@ import PageIndex from './PageIndex';
 import https from 'https';
 import http from 'http';
 
-// const api_key = "6b63ef908c9045a9ac3def3734d36e69";
-
 const options_config = {
 	hostname: "localhost",
 	port: 8080,
 	path: '/api/',
 	method: 'GET'
-	// hostname: "api.nytimes.com",
-	// path: '/svc/books/v3/lists/',
-	// method: 'GET'
 }
 
 export default class Main extends React.Component {
@@ -75,14 +70,7 @@ export default class Main extends React.Component {
 	}
 
 	getViewBookList(bestSellerWeek) {
-
-		const options = {
-			hostname: "localhost",
-			port: 8080,
-			path: '/api/',
-			method: 'GET'
-
-		}
+		let options = Object.assign({}, options_config);
 
 		if (bestSellerWeek) {
 			options.path += "date/" + bestSellerWeek;
@@ -129,8 +117,7 @@ export default class Main extends React.Component {
 		}
 
 		let options = Object.assign({}, options_config);
-		let params = '.json?api-key=' + api_key + '&list=' + listName;
-		options.path = options.path + params;
+		options.path += "list/" + listName;
 
 		const cb = function(data) {
 			this.setState({
@@ -138,8 +125,7 @@ export default class Main extends React.Component {
 					viewBookLists: data.results
 				});
 		}.bind(this);
-
-		this.getDataFromAPI(options, api_key, cb);
+		this.getDataFromServer(options, cb);
 	}
 
 	render() {
