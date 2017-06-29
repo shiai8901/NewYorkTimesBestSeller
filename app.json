@@ -1,0 +1,10 @@
+{
+  "name": "new-york-times-bestseller",
+  "description": "A browsable UI for New York Times bestsellers",
+  "repository": "git+https://github.com/shiai8901/NewYorkTimesBestSeller.git",
+  "keywords": [
+    "UI",
+    "API",
+    "RESTful"
+  ]
+}
