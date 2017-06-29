@@ -27,7 +27,6 @@ router.get('/', (req, res) => {
 			'api-key': process.env.api_key,
 		},
 	}, function(err, response, body) {
-		console.log(body);
 		res.send(body);
 	});
 });
@@ -42,7 +41,6 @@ router.get('/:date', (req, res) => {
 			'published-date': date
 		},
 	}, function(err, response, body) {
-		console.log(body);
 		res.send(body);
 	});
 });
@@ -54,10 +52,9 @@ router.get('/list/:list_name', (req, res) => {
 		url: api_url + list_name + ".json",
 		qs: {
 			'api-key': process.env.api_key,
-			'published-date': date
+			'list': list_name,
 		},
 	}, function(err, response, body) {
-		console.log(body);
 		res.send(body);
 	});
 });
@@ -67,16 +64,15 @@ router.get('/list/:list_name/:date', (req, res) => {
 	let date = req.params.date;
 
 	request.get({
-		url: api_url + list_name + ".json",
+		url: api_url + ".json",
 		qs: {
+			'list': list_name,
 			'api-key': process.env.api_key,
 			'published-date': date,
 			'sort-order': "ASC"
 		},
 	}, function(err, response, body) {
-		body = JSON.parse(body);
-		console.log(body);
-		res.json(body);
+		res.send(body);
 	});
 });
 
