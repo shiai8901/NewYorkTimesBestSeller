@@ -16,12 +16,12 @@ export default class PageNav extends React.Component {
 
 		return (<div className="page_nav">
 			<form className="dropdowns" >
-				<Dropdown getBookListName={this.props.getBookListName} name="fiction" options={fictions} />
-				<Dropdown getBookListName={this.props.getBookListName} name="nonfiction" options={nonfictions} />
-				<Dropdown getBookListName={this.props.getBookListName} name="children's" options={children} />
-				<Dropdown getBookListName={this.props.getBookListName} name="monthly list" options={monthly} />
+				<Dropdown updatePageHeading={this.props.updatePageHeading} name="fiction" options={fictions} />
+				<Dropdown updatePageHeading={this.props.updatePageHeading} name="nonfiction" options={nonfictions} />
+				<Dropdown updatePageHeading={this.props.updatePageHeading} name="children's" options={children} />
+				<Dropdown name="monthly list" options={monthly} />
 			</form>
-			<div className="select_dy_date" onClick={this.props.getBestsellerWeek}>
+			<div className="select_dy_date" onClick={this.props.updatePublishDate}>
 				<div className="select_dy_date_prev arrow" title={this.props.previous_published_date}>
 					<i className="left" ></i>	
 				</div>
@@ -33,3 +33,4 @@ export default class PageNav extends React.Component {
 			</div>)
 	}
 }
+				// <Dropdown updatePageHeading={this.props.updatePageHeading} name="monthly list" options={monthly} />
