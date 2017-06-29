@@ -33,6 +33,7 @@ export default class Main extends React.Component {
 		this.updatePageHeading = this.updatePageHeading.bind(this);
 		this.updatePublishDate = this.updatePublishDate.bind(this);
 		this.getBookListfromServer = this.getBookListfromServer.bind(this);
+		this.getPublishDate = this.getPublishDate.bind(this);
 	}	
 
 	/**
@@ -83,6 +84,26 @@ export default class Main extends React.Component {
 		this.getDataFromServer(options, cb);
 	}
 
+	getPublishDate(bestSellerWeek) {
+		let options = Object.assign({}, options_config);
+
+		if (bestSellerWeek) {
+			options.path += "/" + bestSellerWeek;
+		}
+
+		const cb = function(data) {
+				let lists = [];
+
+				this.setState({
+					next_published_date: data.results.next_published_date,
+					previous_published_date: data.results.previous_published_date,
+					published_date: data.results.published_date,
+					published_date_description: data.results.published_date_description
+				});
+		}.bind(this);
+		this.getDataFromServer(options, cb);
+	}
+
 	componentWillMount() {
 		if (this.state.viewBookLists = []) {
 		this.getOverviewWithDate(); 
@@ -100,6 +121,7 @@ export default class Main extends React.Component {
 		} 
 		if (week && (this.state.page_heading !== "The New York Times Best Sellers")) {
 			console.log(this.state.page_heading_encoded, week);
+			this.getPublishDate(week);
 			this.getBookListfromServer(this.state.page_heading_encoded, week);
 		}
 	}
@@ -112,17 +134,12 @@ export default class Main extends React.Component {
 		} else if (this.props.published_date) {
 			options.path += "/" + this.state.published_date;
 		}
-console.log("options = ", options);
+		console.log("options = ", options);
 		const cb = function(data) {
 			console.log(data);
 			this.setState({
-					page_heading: data.results.list_name,
-					page_heading_encoded: data.results.list_name_encoded,
-					viewBookLists: data.results.books,
-					next_published_date: data.results.next_published_date,
-					previous_published_date: data.results.previous_published_date,
-					published_date: data.results.published_date,
-					published_date_description: data.results.published_date_description
+					page_heading: data.results[0].list_name,
+					viewBookLists: data.results,
 				});
 		}.bind(this);
 		this.getDataFromServer(options, cb);
@@ -137,7 +154,7 @@ console.log("options = ", options);
 		}
 
 		this.setState({
-			page_heading: listName
+			page_heading_encoded: listName
 		});
 		this.getBookListfromServer(listName, this.state.published_date);
 	}
