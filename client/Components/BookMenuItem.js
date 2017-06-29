@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 export default class BookMenuItem extends React.Component {
 
-				// <img className="book_image thumbnail" src={this.props.book.book_image} ></img>
 	render() {
 		let context = this;
 
@@ -12,12 +11,11 @@ export default class BookMenuItem extends React.Component {
 			return (<div className="book_menu_item detai_view">
 			<p className="rank">{this.props.rank}</p>
 			<article className="book">
-				<img className="book_image thumbnail" src={this.props.book.book_image || "https://s1.nyt.com/du/books/images/default-image.png"} ></img>
 				<div className="book_body">
-				<p className="fressness">{this.props.book.weeks_on_list} weeks on the list</p>
-				<p className="title">{this.props.book.title}</p>
-				<p className="author">by {this.props.book.author}</p>
-				<p className="description">{this.props.book.description}</p>
+				<p className="fressness">{this.props.weeks_on_list} weeks on the list</p>
+				<p className="title">{this.props.title}</p>
+				<p className="author">by {this.props.author}</p>
+				<p className="description">{this.props.description}</p>
 				</div>
 			</article>
 			</div>)
