@@ -24,17 +24,21 @@ export default class Main extends React.Component {
 			previous_published_date: "",
 			published_date: "",
 			published_date_description: "",
+			page_heading_encoded: "",
 			page_heading: "The New York Times Best Sellers",
 			page_subheading: "Authoritatively ranked lists of books sold in the United States, sorted by format and genre."
 		}
 		this.getDataFromServer = this.getDataFromServer.bind(this);
-		this.getViewBookList = this.getViewBookList.bind(this);
-		this.getBookListName = this.getBookListName.bind(this);
-		this.getDataFromAPI = this.getDataFromAPI.bind(this);
-		this.getBestsellerWeek = this.getBestsellerWeek.bind(this);
+		this.getOverviewWithDate = this.getOverviewWithDate.bind(this);
+		this.updatePageHeading = this.updatePageHeading.bind(this);
+		this.updatePublishDate = this.updatePublishDate.bind(this);
+		this.getBookListfromServer = this.getBookListfromServer.bind(this);
+		this.getPublishDate = this.getPublishDate.bind(this);
 	}	
 
-
+	/**
+	* function to request data from server
+	*/
 	getDataFromServer(options, callback) {
 		const req = http.request(options, (res) => {
 			let data = "";
@@ -52,28 +56,11 @@ export default class Main extends React.Component {
 		req.end();
 	}
 
-	getDataFromAPI(options, api_key, callback) {
-		const req = https.request(options, (res) => {
-			let data = "";
-			res.on('data', (d) => {
-				data += d;
-			});
-			res.on('end', () => {
-				data = JSON.parse(data);
-				callback(data);
-			});
-		});
-		req.on('error', (e) => {
-			console.error(e);
-		});
-		req.end();
-	}
-
-	getViewBookList(bestSellerWeek) {
+	getOverviewWithDate(bestSellerWeek) {
 		let options = Object.assign({}, options_config);
 
 		if (bestSellerWeek) {
-			options.path += "date/" + bestSellerWeek;
+			options.path += "/" + bestSellerWeek;
 		}
 
 		const cb = function(data) {
@@ -97,18 +84,68 @@ export default class Main extends React.Component {
 		this.getDataFromServer(options, cb);
 	}
 
-	componentWillMount() {
-		this.getViewBookList(); 
+	getPublishDate(bestSellerWeek) {
+		let options = Object.assign({}, options_config);
+
+		if (bestSellerWeek) {
+			options.path += "/" + bestSellerWeek;
+		}
+
+		const cb = function(data) {
+				let lists = [];
+
+				this.setState({
+					next_published_date: data.results.next_published_date,
+					previous_published_date: data.results.previous_published_date,
+					published_date: data.results.published_date,
+					published_date_description: data.results.published_date_description
+				});
+		}.bind(this);
+		this.getDataFromServer(options, cb);
 	}
 
-	getBestsellerWeek(e) {
-		let week = e.target.title;
-		if (week) {
-			this.getViewBookList(week);
+	componentWillMount() {
+		if (this.state.viewBookLists = []) {
+		this.getOverviewWithDate(); 
 		}
 	}
 
-	getBookListName(e) {
+
+	/**
+	* function to update publish_date
+	*/
+	updatePublishDate(e) {
+		let week = e.target.title;
+		if (week && (this.state.page_heading === "The New York Times Best Sellers")) {
+			this.getOverviewWithDate(week);
+		} 
+		if (week && (this.state.page_heading !== "The New York Times Best Sellers")) {
+			console.log(this.state.page_heading_encoded, week);
+			this.getPublishDate(week);
+			this.getBookListfromServer(this.state.page_heading_encoded, week);
+		}
+	}
+
+	getBookListfromServer(listName, week) {
+		let options = Object.assign({}, options_config);
+		options.path += "list/" + listName;
+		if (week) {
+			options.path += "/" + week;
+		} else if (this.props.published_date) {
+			options.path += "/" + this.state.published_date;
+		}
+		console.log("options = ", options);
+		const cb = function(data) {
+			console.log(data);
+			this.setState({
+					page_heading: data.results[0].list_name,
+					viewBookLists: data.results,
+				});
+		}.bind(this);
+		this.getDataFromServer(options, cb);
+	}
+
+	updatePageHeading(e) {
 		let listName;
 		if (e.target.value) {
 			listName = e.target.value;
@@ -116,16 +153,10 @@ export default class Main extends React.Component {
 			listName = e.target.title;
 		}
 
-		let options = Object.assign({}, options_config);
-		options.path += "list/" + listName;
-
-		const cb = function(data) {
-			this.setState({
-					page_heading: data.results[0].list_name,
-					viewBookLists: data.results
-				});
-		}.bind(this);
-		this.getDataFromServer(options, cb);
+		this.setState({
+			page_heading_encoded: listName
+		});
+		this.getBookListfromServer(listName, this.state.published_date);
 	}
 
 	render() {
@@ -134,16 +165,16 @@ export default class Main extends React.Component {
 				page_heading={this.state.page_heading} 
 				page_subheading={this.state.page_subheading} />
 			<PageNav 
-				getBookListName={this.getBookListName}
-				getBestsellerWeek={this.getBestsellerWeek}
+				updatePageHeading={this.updatePageHeading}
+				updatePublishDate={this.updatePublishDate}
 				viewBookLists={this.state.categories}
 				next_published_date={this.state.next_published_date}
 				previous_published_date={this.state.previous_published_date}
 				published_date={this.state.published_date} />
 			<PageContent 
-				getBookListName={this.getBookListName}
-				page_heading={this.state.page_heading} 
+				updatePageHeading={this.updatePageHeading}
 				viewBookLists={this.state.viewBookLists}
+				page_heading={this.state.page_heading} 
 				next_published_date={this.state.next_published_date}
 				previous_published_date={this.state.previous_published_date}
 				published_date={this.state.published_date}
