@@ -16,7 +16,7 @@ export default class Dropdown extends React.Component {
 
 		return (<div className="dropdown">
 			<label htmlFor={this.props.name}>{this.props.name}</label><div className="arrow"><i className="down"></i></div>
-				<select onChange={context.props.getBookListName} >
+				<select onChange={context.props.updatePageHeading} >
 				<option id={this.props.name} name={this.props.name}>{this.props.name}</option>
 				<option disabled>--</option>
 				{content}
