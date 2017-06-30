@@ -8,7 +8,7 @@ import https from 'https';
 import http from 'http';
 
 const options_config = {
-	hostname: "localhost",
+	// hostname: "localhost",
 	port: 8080,
 	path: '/api/',
 	method: 'GET'
