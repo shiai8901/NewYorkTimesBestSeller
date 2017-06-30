@@ -9,14 +9,10 @@ export default class BookMenu extends React.Component {
 
 		if (this.props.page_heading && this.props.page_heading !== "The New York Times Best Sellers" ) {
 			if (this.props.books) {
-
 				sections = this.props.books.map((book) =>  (<BookMenuItem 
 								page_heading={this.props.page_heading}
 								page_heading_encoded={this.props.page_heading_encoded}
-								weeks_on_list={book.weeks_on_list}
-								author={book.book_details[0].author}
-								title={book.book_details[0].title}
-								description={book.book_details[0].description}
+								book={book}
 								key={book.rank} />));
 			}
 
@@ -29,7 +25,6 @@ export default class BookMenu extends React.Component {
 		} 
 
 		if (this.props.books) {
-			console.log('BookMenu', this.props);
 			sections = this.props.books.map((book) => (<BookMenuItem 
 							page_heading={this.props.page_heading}
 							page_heading_encoded={this.props.page_heading_encoded}
