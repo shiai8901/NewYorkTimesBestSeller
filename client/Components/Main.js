@@ -121,7 +121,6 @@ export default class Main extends React.Component {
 		} 
 		if (week && (this.state.page_heading !== "The New York Times Best Sellers")) {
 			console.log(this.state.page_heading_encoded, week);
-			this.getPublishDate(week);
 			this.getBookListfromServer(this.state.page_heading_encoded, week);
 		}
 	}
@@ -134,12 +133,14 @@ export default class Main extends React.Component {
 		} else if (this.props.published_date) {
 			options.path += "/" + this.state.published_date;
 		}
-		console.log("options = ", options);
 		const cb = function(data) {
-			console.log(data);
 			this.setState({
-					page_heading: data.results[0].list_name,
-					viewBookLists: data.results,
+					page_heading: data.results.list_name,
+					viewBookLists: data.results.books,
+					next_published_date: data.results.next_published_date,
+					previous_published_date: data.results.previous_published_date,
+					published_date: data.results.published_date,
+					published_date_description: data.results.published_date_description
 				});
 		}.bind(this);
 		this.getDataFromServer(options, cb);
