@@ -52,7 +52,6 @@ router.get('/list/:list_name', (req, res) => {
 		url: api_url + list_name + ".json",
 		qs: {
 			'api-key': process.env.api_key,
-			'list': list_name,
 		},
 	}, function(err, response, body) {
 		res.send(body);
@@ -64,9 +63,8 @@ router.get('/list/:list_name/:date', (req, res) => {
 	let date = req.params.date;
 
 	request.get({
-		url: api_url + ".json",
+		url: api_url + date + "/" + list_name + ".json",
 		qs: {
-			'list': list_name,
 			'api-key': process.env.api_key,
 			'published-date': date,
 			'sort-order': "ASC"
