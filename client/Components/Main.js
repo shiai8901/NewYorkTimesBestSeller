@@ -9,7 +9,7 @@ import http from 'http';
 
 const options_config = {
 	// hostname: "localhost",
-	port: 8080,
+	// port: 8080,
 	path: '/api/',
 	method: 'GET'
 }
