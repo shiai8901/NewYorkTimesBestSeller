@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -d --watch",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
-    "start": "node server.js & webpack -p"
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "react-dom": "^15.6.1",
     "request": "^2.81.0",
     "webpack": "^3.0.0"
   },
