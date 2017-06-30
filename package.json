@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/shiai8901/NewYorkTimesBestSeller#readme",
   "dependencies": {
+    "babel-loader": "^7.1.1",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "react-dom": "^15.6.1",
