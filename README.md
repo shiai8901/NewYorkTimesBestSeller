@@ -22,4 +22,5 @@ and then open client/index.html in browser
 User can browse the home page, however, when user click a list_name, the book list detail view cannot render properly, since the data fetched through NY Times API does not contain book image.
 
 ## What it looks like
-Please check out https://youtu.be/VHrl9unAurY
+https://newyorktimesbestsellers-react.herokuapp.com/
+Or check out the video clip: https://youtu.be/VHrl9unAurY
