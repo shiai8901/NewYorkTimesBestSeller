@@ -1,25 +1,16 @@
 # NewYorkTimesBestSeller
-A browsable UI for New York Times bestsellers
-given the following endpoint...
-``` 
-http://api.nytimes.com/svc/books/v3/lists/overview.jsonp?callback=foobar&api-key=[YOUR API KEY]
-``` 
-Please feel free to use any framework and/or library. Your solution should be supported by all modern browsers.
- 
-Requires
-A NY Times API key...
-```
-http://developer.nytimes.com/signup (make sure to select the Books API from the API menu)
-```
+A browsable UI for New York Times bestsellers. This is a practise of implementing responsive interface using CSS media query, following mobile first standard.
 
 ## Start
 ```
-webpack -d --watch
+npm start
+npm run build
 ```
-and then open client/index.html in browser
+then open client/index.html in browser
+or open http://locolhost:8080 
 
 ## Bugs
-User can browse the home page, however, when user click a list_name, the book list detail view cannot render properly, since the data fetched through NY Times API does not contain book image.
+When user clickS a Monthly list, the list cannot render, since the NY Times API does not specify how to fecth those data.
 
 ## What it looks like
 https://newyorktimesbestsellers-react.herokuapp.com/
