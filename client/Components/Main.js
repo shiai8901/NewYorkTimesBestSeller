@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import MyInfo from './MyInfo';
 import PageHeader from './PageHeader';
 import PageNav from './PageNav';
 import PageContent from './PageContent';
@@ -162,6 +163,7 @@ export default class Main extends React.Component {
 
 	render() {
 		return (<div className="main">
+			<MyInfo />
 			<PageHeader 
 				page_heading={this.state.page_heading} 
 				page_subheading={this.state.page_subheading} />
